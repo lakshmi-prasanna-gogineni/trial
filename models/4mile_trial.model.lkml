@@ -26,3 +26,5 @@ datagroup: ecommerce_etl {
 }
 
 persist_with: ecommerce_etl
+
+explore: users {}
