@@ -23,13 +23,14 @@ include: "/views/*.view.lkml"                # include all views in the views/ f
 
 datagroup: ecommerce_etl {
   ### Datagroups Allow you to sync cache and Persisted Derived Tables to events like ETL
-  sql_trigger: select max(created_at) from public.order_items ;;
-  max_cache_age: "1 hour"
+  sql_trigger: select date_part(minute, current_timestamp());;
+  max_cache_age: "10 minutes"
 }
 
 persist_with: ecommerce_etl
 
 explore: Orders {
+  label: "4 Mile Trial Orders"
   from: users
   join: order_items {
    type: left_outer
