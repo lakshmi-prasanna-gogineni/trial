@@ -24,7 +24,7 @@ include: "/views/*.view.lkml"                # include all views in the views/ f
 datagroup: ecommerce_etl {
   ### Datagroups Allow you to sync cache and Persisted Derived Tables to events like ETL
   #sql_trigger: select date_part(minute, current_timestamp());;
-  sql_trigger: select false ;;
+  sql_trigger: select true ;;
   max_cache_age: "1 minute"
 }
 
