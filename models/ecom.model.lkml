@@ -1,12 +1,13 @@
 connection: "thelook"
 
 include: "/views/**/*.view"
+include: "/access_grants.lkml"
 
-datagroup: rachelj_default_datagroup {
+datagroup: default_datagroup {
   max_cache_age: "24 hours"
 }
 
-persist_with: rachelj_default_datagroup
+persist_with: default_datagroup
 
 
 explore: events {
