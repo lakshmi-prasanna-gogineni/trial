@@ -1,4 +1,4 @@
-connection: "thelook"
+connection: "looker-private-demo"
 #Removed all the comments
 
 include: "/views/*.view.lkml"                # include all views in the views/ folder in this project
@@ -16,10 +16,5 @@ persist_with: ecommerce_etl
 
 explore: Orders {
   label: "4 Mile Trial Orders"
-  from: users
-  join: order_items {
-   type: left_outer
-  relationship: one_to_many
-  sql_on: ${Orders.id}=${order_items.user_id} ;;
-  }
+  from: order_items
 }
