@@ -1,26 +1,34 @@
 view: order_items {
-  sql_table_name: "PUBLIC"."ORDER_ITEMS"
-    ;;
-  drill_fields: [id]
+  sql_table_name: looker-private-demo.ecomm.order_items ;;
 
   dimension: id {
     primary_key: yes
     type: number
-    sql: ${TABLE}."ID" ;;
+    sql: ${TABLE}.id ;;
+
   }
+
+  #measure: user_count {
+  #  type: number
+  #  sql: ${users.id} ;;
+  #}
 
   dimension_group: created {
     type: time
     timeframes: [
       raw,
       time,
+      hour_of_day,
       date,
+      day_of_week,
+      month_name,
       week,
       month,
       quarter,
-      year
+      year,
+      month_num
     ]
-    sql: ${TABLE}."CREATED_AT" ;;
+    sql: ${TABLE}.created_at ;;
   }
 
   dimension_group: delivered {
@@ -34,18 +42,18 @@ view: order_items {
       quarter,
       year
     ]
-    sql: ${TABLE}."DELIVERED_AT" ;;
+    sql: ${TABLE}.delivered_at ;;
   }
 
   dimension: inventory_item_id {
     type: number
     # hidden: yes
-    sql: ${TABLE}."INVENTORY_ITEM_ID" ;;
+    sql: ${TABLE}.inventory_item_id ;;
   }
 
   dimension: order_id {
     type: number
-    sql: ${TABLE}."ORDER_ID" ;;
+    sql: ${TABLE}.order_id ;;
   }
 
   dimension_group: returned {
@@ -59,12 +67,12 @@ view: order_items {
       quarter,
       year
     ]
-    sql: ${TABLE}."RETURNED_AT" ;;
+    sql: ${TABLE}.returned_at ;;
   }
 
   dimension: sale_price {
     type: number
-    sql: ${TABLE}."SALE_PRICE" ;;
+    sql: ${TABLE}.sale_price ;;
   }
 
   dimension_group: shipped {
@@ -78,34 +86,21 @@ view: order_items {
       quarter,
       year
     ]
-    sql: ${TABLE}."SHIPPED_AT" ;;
+    sql: ${TABLE}.shipped_at ;;
   }
 
   dimension: status {
     type: string
-    sql: ${TABLE}."STATUS" ;;
+    sql: ${TABLE}.status ;;
   }
 
   dimension: user_id {
-    type: number
-     hidden: yes
-    sql: ${TABLE}."USER_ID" ;;
+    type: string
+    # hidden: yes
+    sql: ${TABLE}.user_id ;;
   }
 
   measure: count {
     type: count
-    drill_fields: [detail*]
   }
-
-  # ----- Sets of fields for drilling ------
-  set: detail {
-    fields: [
-      id,
-      users.first_name,
-      users.last_name,
-      users.id,
-      inventory_items.id,
-      inventory_items.product_name
-    ]
   }
-}
