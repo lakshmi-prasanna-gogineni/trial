@@ -1,4 +1,5 @@
 view: order_items {
+
   sql_table_name: "PUBLIC"."ORDER_ITEMS";;
 
 ######################### Primary Key #########################

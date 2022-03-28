@@ -1,3 +1,4 @@
+
 # The name of this view in Looker is "Users"
 view: users {
   # The sql_table_name parameter indicates the underlying database table
@@ -113,5 +114,6 @@ view: users {
   measure: count {
     type: count
     drill_fields: [id, last_name, first_name, events.count, order_items.count]
+
   }
 }

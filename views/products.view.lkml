@@ -1,3 +1,4 @@
+
 # The name of this view in Looker is "Products"
 view: products {
   # The sql_table_name parameter indicates the underlying database table
@@ -76,5 +77,5 @@ view: products {
   measure: count {
     type: count
     drill_fields: [id, name, distribution_centers.name, distribution_centers.id, inventory_items.count]
-  }
+}
 }
